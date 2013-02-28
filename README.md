@@ -1,0 +1,4 @@
+jfract
+======
+
+Java fractal generator
