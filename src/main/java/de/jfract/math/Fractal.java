@@ -15,9 +15,10 @@ public abstract class Fractal {
 		Complex z0=c;
         if (getType()==UsageType.START_POINT || getType()==UsageType.BOTH) {
             z0 = startPoint;
-        }
-		
-		Complex z1=new Complex(c.real()-10000., c.imaginary());
+        } // */
+
+//        Complex z1=new Complex(c.real()-10000., c.imaginary());
+        Complex z1=new Complex(0,0);
 		Complex d;
 		Complex e;
         if (getType()==UsageType.FIX_POINT || getType()==UsageType.BOTH) {
@@ -29,17 +30,18 @@ public abstract class Fractal {
 		r.divergence = null;
 		for(int i=0;i<maxit;++i) {
 			z0 = calc(z0, e);
-			if (z0.abs()>2.) {
+//			d = z0.subtract(z1);
+//			if (d.abs()<1.E-12) {
+            if (Math.abs(z0.real() - z1.real()) < 1.e-12 && Math.abs(z0.imaginary() - z1.imaginary()) < 1.e-12) {
 				r.iteration = i;
-				r.divergence = Divergence.divergent;
+                r.divergence = Divergence.convergent;
 				break;
 			}
-			d = z0.subtract(z1);
-			if (d.abs()<1.E-10) {
-				r.divergence = Divergence.convergent;
-				r.iteration = i;
-				break;
-			}
+            if (z0.abs2()>1.e+10) {
+                r.iteration = i;
+                r.divergence = Divergence.divergent;
+                break;
+            }
 			z1 = z0;
 		}
 

@@ -38,11 +38,15 @@ public class Complex implements Serializable {
 	public Complex square() {
 		return new Complex(re*re-im*im, 2.*re*im);
 	}
-	
-	public double abs() {
-		return Math.sqrt(re*re+im*im);
-	}
-	
+
+    public double abs() {
+        return Math.sqrt(re*re+im*im);
+    }
+
+    public double abs2() {
+        return re*re+im*im;
+    }
+
 	public Complex conjugate() {
 		return new Complex(re, -im);
 	}

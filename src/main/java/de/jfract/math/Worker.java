@@ -10,7 +10,6 @@ public class Worker implements Runnable {
 	private int maxy;
 	private int maxit;
 	private Fractal f;
-	private Graphics2D g;
 	private ColorModel cm;
 	private double d;
 	private double d2;
@@ -25,7 +24,6 @@ public class Worker implements Runnable {
         this.maxy = fp.getMaxy();
         this.maxit = fp.getMaxit();
         this.f = fp.getFractal();
-//        this.g = g;
         this.dq = dq;
         this.cm = fp.getColorModel();
         this.d = fp.getD();
@@ -40,24 +38,6 @@ public class Worker implements Runnable {
 
     }
 	
-	public Worker(int maxx, int maxy, ColumnSynchronizer cs, int maxit, Fractal f, Graphics2D g, ColorModel cm, double d, double mx, double my, CyclicBarrier cb) {
-		this.maxx = maxx;
-		this.maxy = maxy;
-		this.maxit = maxit;
-		this.f = f;
-		this.g = g;
-		this.cm = cm;
-		this.d = d;
-		this.cb = cb;
-		this.cs = cs;
-		double aspect = ((double)maxx)/((double)maxy);
-		d2 = d*aspect;
-		
-		// Obere linke Ecke
-		ulx = mx-d2/2.;
-		uly = my-d/2.;
-	}
-	
 	@Override
 	public void run() {
         Thread me = Thread.currentThread();
@@ -71,12 +51,6 @@ public class Worker implements Runnable {
 				double y = uly+d*((double)j)/maxy;
 				Complex c = new Complex(x, y);
 				Result r = f.calc(c, maxit);
-//				g.setColor(cm.getColor(r));
-//				g.drawLine(i, j, i, j);
-//                DrawingQueue.DrawItem di = new DrawingQueue.DrawItem();
-//                di.col = cm.getColor(r);
-//                di.x = i;
-//                di.y = j;
                 dq.set(i,j,cm.getColor(r));
 			}
 		}

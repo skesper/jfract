@@ -4,11 +4,11 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
- * Here starts the application. We will only accept JVM's that are aware of the
- * Nimbus LAF - which means jdk 1.6+ I think...
+ * Created with IntelliJ IDEA.
  * User: kesper
  * Date: 22.02.13
  * Time: 15:16
+ * To change this template use File | Settings | File Templates.
  */
 public class App {
 
