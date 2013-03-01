@@ -2,6 +2,11 @@ package de.jfract.math;
 
 import java.io.Serializable;
 
+/**
+ * Simple complex data type with fundamental operations.
+ * User: kesper
+ * Date: 22.02.13
+ */
 public class Complex implements Serializable {
 
 	private static final long serialVersionUID = -3254336492636374618L;
