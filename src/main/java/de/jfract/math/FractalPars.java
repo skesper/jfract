@@ -1,7 +1,9 @@
 package de.jfract.math;
 
 
-public class FractalPars {
+import java.io.Serializable;
+
+public class FractalPars implements Serializable {
 
 	private ColorModel colorModel = new ColorModel(20, 5, 20);
 	private int maxx = 2000;

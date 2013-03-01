@@ -17,7 +17,22 @@ public class Chaos1 extends Fractal {
 	}
 
     @Override
-    protected UsageType getType() {
+    public UsageType getType() {
         return UsageType.START_POINT;
+    }
+
+    @Override
+    public int getPreferredMaxIt() {
+        return 1000;
+    }
+
+    @Override
+    public Complex getPreferredStartPoint() {
+        return new Complex(0., .6);
+    }
+
+    @Override
+    public Complex getPreferredFixPoint() {
+        return null;
     }
 }

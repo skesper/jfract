@@ -31,6 +31,10 @@ public class FractalChooseAction extends AbstractAction {
             Fractal fractal = type.getImplementation().newInstance();
             FractalPars fp = new FractalPars();
             fp.setFractal(fractal);
+            fp.setMaxit(fractal.getPreferredMaxIt());
+            fp.setStartPoint(fractal.getPreferredStartPoint());
+            fp.setFixPoint(fractal.getPreferredFixPoint());
+
             ApplicationContext.getInstance().setFractalParameters(fp);
         } catch (Exception e1) {
             e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

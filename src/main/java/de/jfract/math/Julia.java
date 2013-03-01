@@ -17,7 +17,22 @@ public class Julia extends Fractal {
 	}
 
     @Override
-    protected UsageType getType() {
+    public UsageType getType() {
         return UsageType.FIX_POINT;
+    }
+
+    @Override
+    public int getPreferredMaxIt() {
+        return 200;
+    }
+
+    @Override
+    public Complex getPreferredStartPoint() {
+        return null;
+    }
+
+    @Override
+    public Complex getPreferredFixPoint() {
+        return new Complex(-1.2,0.3);
     }
 }

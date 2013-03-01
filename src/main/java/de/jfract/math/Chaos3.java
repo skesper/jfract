@@ -1,16 +1,14 @@
 package de.jfract.math;
 
 /**
- * Created with IntelliJ IDEA.
  * User: sk
  * Date: 27.02.13
  * Time: 21:21
- * To change this template use File | Settings | File Templates.
  */
 public class Chaos3 extends Fractal {
 
     public Chaos3() {
-        super(new Complex(-2.,0), new Complex(0,0));
+        super(null, null);
     }
 
     public Chaos3(Complex startPoint, Complex fixPoint) {
@@ -19,32 +17,48 @@ public class Chaos3 extends Fractal {
 
     @Override
     protected Complex calc(Complex z, Complex c) {
-        double a, b, cc, d;
-        double a1, a2, b1, b2;
-        double n, c1, c2;
+        double zreal, zimag, creal, cimag;
+        double areal, aimag, breal, bimag;
+        double n, c1real, c1imag;
 
-        cc = c.real();
-        d = c.imaginary();
+        creal = c.real();
+        cimag = c.imaginary();
 
-        a = z.real();
-        b = z.imaginary();
+        zreal = z.real();
+        zimag = z.imaginary();
 
 
-        a1 = a * a - b * b + cc;
-        a2 = 2. * a + cc;
-        b1 = 2. * a * b + d;
-        b2 = 2. * b + d;
+        areal = zreal * zreal - zimag * zimag + creal;
+        aimag = 2. * zreal + creal;
+        breal = 2. * zreal * zimag + cimag;
+        bimag = 2. * zimag + cimag;
 
-        n = a2 * a2 + b2 * b2;
+        n = aimag * aimag + bimag * bimag;
 
-        c1 = (a1 * a2 + b1 * b2) / n;
-        c2 = (-a1 * b2 + a2 * b1) / n;
+        c1real = (areal * aimag + breal * bimag) / n;
+//        c1imag = (-areal * bimag + aimag * breal) / n;
+        c1imag = (aimag * breal-areal * bimag) / n;
 
-        return new Complex(c1 * c1 - c2 * c2,2. * c1 * c2);
+        return new Complex(c1real * c1real - c1imag * c1imag,2. * c1real * c1imag);
     }
 
     @Override
-    protected UsageType getType() {
-        return UsageType.NONE;
+    public UsageType getType() {
+        return UsageType.START_POINT;
+    }
+
+    @Override
+    public int getPreferredMaxIt() {
+        return 2500;
+    }
+
+    @Override
+    public Complex getPreferredStartPoint() {
+        return new Complex(0.,0.);
+    }
+
+    @Override
+    public Complex getPreferredFixPoint() {
+        return null;
     }
 }

@@ -3,8 +3,9 @@ package de.jfract.math;
 import de.jfract.ApplicationContext;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class ColorModel {
+public class ColorModel implements Serializable {
 	private int r;
 	private int g;
 	private int b;

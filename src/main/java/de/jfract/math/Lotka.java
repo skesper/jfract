@@ -4,7 +4,7 @@ public class Lotka extends Fractal {
 	private double a,b,c,d, dt;
 
     public Lotka() {
-        super(null, new Complex(1, 2));
+        super(null, null);
         this.a = 0.1;
         this.b = 1.4;
         this.c = 0.3;
@@ -13,7 +13,7 @@ public class Lotka extends Fractal {
     }
 
 	public Lotka(double a, double b, double c, double d, double dt) {
-		super(null, new Complex(1, 2));
+		super(null, null);
 		this.a = a;
 		this.b = b;
 		this.c = c;
@@ -31,7 +31,22 @@ public class Lotka extends Fractal {
 	}
 
     @Override
-    protected UsageType getType() {
+    public UsageType getType() {
         return UsageType.NONE;
+    }
+
+    @Override
+    public int getPreferredMaxIt() {
+        return 1000;
+    }
+
+    @Override
+    public Complex getPreferredStartPoint() {
+        return null;
+    }
+
+    @Override
+    public Complex getPreferredFixPoint() {
+        return null;
     }
 }

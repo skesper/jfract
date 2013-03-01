@@ -16,6 +16,9 @@ public class GuiStaticCreator {
         JMenuBar bar = new JMenuBar();
 
         JMenu file = new JMenu("File");
+        file.add(new LoadAction());
+        file.add(new SaveAction());
+        file.add(new JSeparator());
         file.add(new ExitAction());
         bar.add(file);
 

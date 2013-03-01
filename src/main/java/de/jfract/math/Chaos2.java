@@ -4,7 +4,7 @@ public class Chaos2 extends Fractal {
 	private static Complex one = new Complex(-2., 0.);
 
 	public Chaos2() {
-		super(null, one);
+		super(null, null);
 	}
 
 	@Override
@@ -15,7 +15,22 @@ public class Chaos2 extends Fractal {
 
 
     @Override
-    protected UsageType getType() {
+    public UsageType getType() {
         return UsageType.NONE;
+    }
+
+    @Override
+    public int getPreferredMaxIt() {
+        return 1000;
+    }
+
+    @Override
+    public Complex getPreferredStartPoint() {
+        return null;
+    }
+
+    @Override
+    public Complex getPreferredFixPoint() {
+        return null;
     }
 }

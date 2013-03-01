@@ -1,6 +1,8 @@
 package de.jfract.math;
 
-public abstract class Fractal {
+import java.io.Serializable;
+
+public abstract class Fractal implements Serializable {
 	private Complex startPoint = null;
 	private Complex fixPoint = null;
 	
@@ -30,9 +32,8 @@ public abstract class Fractal {
 		r.divergence = null;
 		for(int i=0;i<maxit;++i) {
 			z0 = calc(z0, e);
-//			d = z0.subtract(z1);
-//			if (d.abs()<1.E-12) {
-            if (Math.abs(z0.real() - z1.real()) < 1.e-12 && Math.abs(z0.imaginary() - z1.imaginary()) < 1.e-12) {
+			d = z0.subtract(z1);
+			if (d.abs()<1.E-12) {
 				r.iteration = i;
                 r.divergence = Divergence.convergent;
 				break;
@@ -78,7 +79,13 @@ public abstract class Fractal {
 	 */
 	protected abstract Complex calc(Complex z, Complex c);
 
-    protected abstract UsageType getType();
+    public abstract UsageType getType();
+
+    public abstract int getPreferredMaxIt();
+
+    public abstract Complex getPreferredStartPoint();
+
+    public abstract Complex getPreferredFixPoint();
 
     public enum UsageType {
         NONE,

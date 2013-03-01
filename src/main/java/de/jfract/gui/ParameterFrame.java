@@ -131,21 +131,41 @@ public class ParameterFrame extends JFrame {
     private javax.swing.JTextField startPointRe;
 
     public void setFixPoint(Complex fixPoint) {
-        fixPointRe.setText(Double.toString(fixPoint.real()));
-        fixPointIm.setText(Double.toString(fixPoint.imaginary()));
+        if (fixPoint!=null) {
+            fixPointRe.setText(Double.toString(fixPoint.real()));
+            fixPointIm.setText(Double.toString(fixPoint.imaginary()));
+        }
     }
 
     public void setStartPoint(Complex startPoint) {
-        startPointRe.setText(Double.toString(startPoint.real()));
-        startPointIm.setText(Double.toString(startPoint.imaginary()));
+        if (startPoint!=null) {
+            startPointRe.setText(Double.toString(startPoint.real()));
+            startPointIm.setText(Double.toString(startPoint.imaginary()));
+        }
     }
 
     public Complex getFixPoint() {
-        return new Complex(Double.parseDouble(fixPointRe.getText()),Double.parseDouble(fixPointIm.getText()));
+        String re = fixPointRe.getText();
+        String im = fixPointIm.getText();
+        if (fitForParsing(re) && fitForParsing(im)) {
+            return new Complex(Double.parseDouble(re),Double.parseDouble(im));
+        }
+        return null;
     }
 
     public Complex getStartPoint() {
-        return new Complex(Double.parseDouble(startPointRe.getText()),Double.parseDouble(startPointIm.getText()));
+        String re = startPointRe.getText();
+        String im = startPointIm.getText();
+        if (fitForParsing(re) && fitForParsing(im)) {
+            return new Complex(Double.parseDouble(re),Double.parseDouble(im));
+        }
+        return null;
+    }
+
+    private boolean fitForParsing(String s) {
+        if (s==null) return false;
+        if ("".equals(s.trim())) return false;
+        return true;
     }
 
     public void setIterations(int it) {

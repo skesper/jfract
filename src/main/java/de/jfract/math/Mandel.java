@@ -13,7 +13,22 @@ public class Mandel extends Fractal {
 	}
 
     @Override
-    protected UsageType getType() {
+    public UsageType getType() {
         return UsageType.NONE;
+    }
+
+    @Override
+    public int getPreferredMaxIt() {
+        return 100;
+    }
+
+    @Override
+    public Complex getPreferredStartPoint() {
+        return null;
+    }
+
+    @Override
+    public Complex getPreferredFixPoint() {
+        return null;
     }
 }
