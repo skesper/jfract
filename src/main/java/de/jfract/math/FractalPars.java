@@ -3,8 +3,6 @@ package de.jfract.math;
 
 public class FractalPars {
 
-	private Complex startPoint = new Complex(-1., 0.1);
-	private Complex fixPoint = new Complex(-1.2, 0.25);
 	private ColorModel colorModel = new ColorModel(20, 5, 20);
 	private int maxx = 2000;
 	private int maxy = 2000;
@@ -74,16 +72,16 @@ public class FractalPars {
 		this.centerY = centerY;
 	}
 	public Complex getStartPoint() {
-		return startPoint;
+		return fractal.getStartPoint();
 	}
 	public void setStartPoint(Complex startPoint) {
-		this.startPoint = startPoint;
+		this.fractal.setStartPoint(startPoint);
 	}
 	public Complex getFixPoint() {
-		return fixPoint;
+		return fractal.getFixPoint();
 	}
 	public void setFixPoint(Complex fixPoint) {
-		this.fixPoint = fixPoint;
+		this.fractal.setFixPoint(fixPoint);
 	}
 
     public void zoomIn(int x, int y, int width, int height) {

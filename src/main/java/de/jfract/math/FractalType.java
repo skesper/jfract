@@ -13,6 +13,7 @@ public enum FractalType {
     JULIA("Julia", Julia.class),
     CHAOS1("Chaotic Model 1", Chaos1.class),
     CHAOS2("Chaotic Model 2", Chaos2.class),
+    CHAOS3("Chaotic Model 3", Chaos3.class),
     LOTKA("Lotka Volterra", Lotka.class)
     ;
 
