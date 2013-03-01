@@ -6,11 +6,7 @@ public abstract class Fractal implements Serializable {
 	private Complex startPoint = null;
 	private Complex fixPoint = null;
 	
-	public Fractal(Complex startPoint, Complex fixPoint) {
-		this.startPoint = startPoint;
-		this.fixPoint = fixPoint;
-	}
-	
+
 	public Result calc(Complex c, int maxit) {
 		Result r = new Result();
 		
@@ -86,6 +82,8 @@ public abstract class Fractal implements Serializable {
     public abstract Complex getPreferredStartPoint();
 
     public abstract Complex getPreferredFixPoint();
+
+    public abstract double getPreferredD();
 
     public enum UsageType {
         NONE,

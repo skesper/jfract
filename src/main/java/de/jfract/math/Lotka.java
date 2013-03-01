@@ -4,22 +4,12 @@ public class Lotka extends Fractal {
 	private double a,b,c,d, dt;
 
     public Lotka() {
-        super(null, null);
         this.a = 0.1;
         this.b = 1.4;
         this.c = 0.3;
         this.d = 0.1;
         this.dt = 0.5;
     }
-
-	public Lotka(double a, double b, double c, double d, double dt) {
-		super(null, null);
-		this.a = a;
-		this.b = b;
-		this.c = c;
-		this.d = d;
-		this.dt = dt;
-	}
 
 	@Override
 	protected Complex calc(Complex z, Complex cc) {
@@ -48,5 +38,10 @@ public class Lotka extends Fractal {
     @Override
     public Complex getPreferredFixPoint() {
         return null;
+    }
+
+    @Override
+    public double getPreferredD() {
+        return 25.;
     }
 }

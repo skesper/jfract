@@ -4,7 +4,6 @@ public class Chaos2 extends Fractal {
 	private static Complex one = new Complex(-2., 0.);
 
 	public Chaos2() {
-		super(null, null);
 	}
 
 	@Override
@@ -32,5 +31,10 @@ public class Chaos2 extends Fractal {
     @Override
     public Complex getPreferredFixPoint() {
         return null;
+    }
+
+    @Override
+    public double getPreferredD() {
+        return 10.;
     }
 }

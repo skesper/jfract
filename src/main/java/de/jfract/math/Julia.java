@@ -4,12 +4,8 @@ package de.jfract.math;
 public class Julia extends Fractal {
 
     public Julia() {
-        super(null, new Complex(-1.2,0.3));
     }
 
-    public Julia(Complex fixPoint) {
-        super(null, fixPoint);
-    }
 
     @Override
 	protected Complex calc(Complex z, Complex c) {
@@ -34,5 +30,10 @@ public class Julia extends Fractal {
     @Override
     public Complex getPreferredFixPoint() {
         return new Complex(-1.2,0.3);
+    }
+
+    @Override
+    public double getPreferredD() {
+        return 2.5;
     }
 }

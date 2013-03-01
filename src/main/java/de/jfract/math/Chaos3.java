@@ -8,12 +8,8 @@ package de.jfract.math;
 public class Chaos3 extends Fractal {
 
     public Chaos3() {
-        super(null, null);
     }
 
-    public Chaos3(Complex startPoint, Complex fixPoint) {
-        super(startPoint, fixPoint);
-    }
 
     @Override
     protected Complex calc(Complex z, Complex c) {
@@ -60,5 +56,10 @@ public class Chaos3 extends Fractal {
     @Override
     public Complex getPreferredFixPoint() {
         return null;
+    }
+
+    @Override
+    public double getPreferredD() {
+        return 10.;
     }
 }

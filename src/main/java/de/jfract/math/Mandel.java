@@ -4,7 +4,6 @@ package de.jfract.math;
 public class Mandel extends Fractal {
 
 	public Mandel() {
-		super(null, null);
 	}
 
 	@Override
@@ -30,5 +29,10 @@ public class Mandel extends Fractal {
     @Override
     public Complex getPreferredFixPoint() {
         return null;
+    }
+
+    @Override
+    public double getPreferredD() {
+        return 2.5;
     }
 }
