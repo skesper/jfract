@@ -26,11 +26,16 @@ public class Complex implements Serializable {
 	public Complex multiply(double a) {
 		return new Complex(re*a, im*a);
 	}
-	
-	public Complex divide(Complex a) {
-		double n = (a.re*a.re+a.im*a.im);
-		return new Complex((re*a.re+im*a.im)/n,(im*a.re-re*a.im)/n);
-	}
+
+    public Complex divide(Complex a) {
+        double n = (a.re*a.re+a.im*a.im);
+        return new Complex((re*a.re+im*a.im)/n,(im*a.re-re*a.im)/n);
+    }
+
+    public Complex strangeDivide(Complex a) {
+        double n = (im*im+a.im*a.im);
+        return new Complex((re*im+a.re*a.im)/n, (im*a.re-re*a.im)/n);
+    }
 
 	public Complex add(Complex a) {
 		return new Complex(re+a.re, im+a.im);

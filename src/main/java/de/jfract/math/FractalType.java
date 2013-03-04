@@ -14,6 +14,7 @@ public enum FractalType {
     CHAOS1("Chaotic Model 1", Chaos1.class),
     CHAOS2("Chaotic Model 2", Chaos2.class),
     CHAOS3("Chaotic Model 3", Chaos3.class),
+    CHAOS4("Chaotic Model 4", Chaos4.class),
     LOTKA("Lotka Volterra", Lotka.class)
     ;
 

@@ -75,7 +75,6 @@ public class ApplicationContext {
             threadStack.push(Thread.currentThread());
 
             int processors = Runtime.getRuntime().availableProcessors();
-            System.out.println("DEBUG: Number of processors: "+processors);
             Thread[] cals = new Thread[processors];
             CyclicBarrier cb = null; //new CyclicBarrier(processors+1);
             ColumnSynchronizer cs = new ColumnSynchronizer(fp.getMaxx());
