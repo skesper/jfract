@@ -25,6 +25,7 @@ public class GuiStaticCreator {
         JMenu sett = new JMenu("Settings");
         sett.add(new IterationDepthAction());
         sett.add(new ParameterAction());
+        sett.add(new SelectColorModelAction());
         bar.add(sett);
 
         JMenu frac = new JMenu("Fractals");

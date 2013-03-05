@@ -1,11 +1,13 @@
 package de.jfract.math;
 
 
+import de.jfract.math.color.DefaultModel;
+
 import java.io.Serializable;
 
 public class FractalPars implements Serializable {
 
-	private ColorModel colorModel = new ColorModel(20, 5, 20);
+    private ColorModel colorModel = new DefaultModel();
 	private int maxx = 2000;
 	private int maxy = 2000;
 	private int maxit = 100;
