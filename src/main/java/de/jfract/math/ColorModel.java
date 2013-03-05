@@ -38,6 +38,54 @@ public abstract class ColorModel implements Serializable {
 		return Color.white;
 	}
 
+    public double getBconv() {
+        return bconv;
+    }
+
+    public void setBconv(double bconv) {
+        this.bconv = bconv;
+    }
+
+    public double getBdiv() {
+        return bdiv;
+    }
+
+    public void setBdiv(double bdiv) {
+        this.bdiv = bdiv;
+    }
+
+    public double getGconv() {
+        return gconv;
+    }
+
+    public void setGconv(double gconv) {
+        this.gconv = gconv;
+    }
+
+    public double getGdiv() {
+        return gdiv;
+    }
+
+    public void setGdiv(double gdiv) {
+        this.gdiv = gdiv;
+    }
+
+    public double getRconv() {
+        return rconv;
+    }
+
+    public void setRconv(double rconv) {
+        this.rconv = rconv;
+    }
+
+    public double getRdiv() {
+        return rdiv;
+    }
+
+    public void setRdiv(double rdiv) {
+        this.rdiv = rdiv;
+    }
+
     protected abstract Color getDivergentColor(int it);
 
     protected abstract Color getConvergentColor(int it);

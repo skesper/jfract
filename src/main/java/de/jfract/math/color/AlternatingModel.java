@@ -5,11 +5,9 @@ import de.jfract.math.ColorModel;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
  * User: kesper
  * Date: 05.03.13
  * Time: 15:38
- * To change this template use File | Settings | File Templates.
  */
 public class AlternatingModel extends ColorModel {
 
