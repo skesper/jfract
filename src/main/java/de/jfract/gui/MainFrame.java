@@ -14,6 +14,7 @@ public class MainFrame extends JFrame {
     private javax.swing.JMenuBar menuBar;
 
     public MainFrame(DrawPanel drawPanel) {
+        this.setIconImage(IconHolder.getIcon());
         this.drawPanel = drawPanel;
         initComponents();
     }
