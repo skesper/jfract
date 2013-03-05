@@ -28,4 +28,13 @@ public class DrawPanel extends JPanel {
 //        g.fillRect(0,0,getWidth(), getHeight());
     }
 
+    @Override
+    public void repaint(Rectangle r) {
+        super.repaint(r);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void repaint(long tm, int x, int y, int width, int height) {
+        super.repaint(tm, x, y, width, height);    //To change body of overridden methods use File | Settings | File Templates.
+    }
 }

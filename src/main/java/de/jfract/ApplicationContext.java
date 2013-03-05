@@ -56,6 +56,8 @@ public class ApplicationContext {
 
     public void recalculate() {
 
+        if (fractalParameters==null || fractalParameters.getFractal()==null) return;
+
         while(!threadStack.isEmpty()) {
             Thread t = threadStack.pop();
             t.interrupt();

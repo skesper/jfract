@@ -13,7 +13,7 @@ public class Mandel extends Fractal {
 
     @Override
     public UsageType getType() {
-        return UsageType.NONE;
+        return UsageType.START_POINT;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Mandel extends Fractal {
 
     @Override
     public Complex getPreferredStartPoint() {
-        return null;
+        return new Complex(0,0);
     }
 
     @Override

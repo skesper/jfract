@@ -1,6 +1,8 @@
 package de.jfract.gui.actions;
 
 import de.jfract.ApplicationContext;
+import de.jfract.gui.ConfirmDialogs;
+import de.jfract.math.FractalPars;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,23 +21,22 @@ public class IterationDepthAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String result = JOptionPane.showInputDialog(
-                ApplicationContext.getInstance().getMainFrame(),
-                "Iteration depth",
-                ApplicationContext.getInstance().getFractalParameters().getMaxit());
+        FractalPars fp = ApplicationContext.getInstance().getFractalParameters();
+        if (fp==null || fp.getFractal()==null) {
+            ConfirmDialogs.showError("You must select a fractal first!");
+            return;
+        }
+
+        String result = ConfirmDialogs.showInput("Iteration depth",
+                ""+fp.getMaxit());
 
         if (result!=null) {
             try {
                 int it = Integer.parseInt(result);
-                ApplicationContext.getInstance().getFractalParameters().setMaxit(it);
+                fp.setMaxit(it);
                 ApplicationContext.getInstance().recalculate();
             } catch(NumberFormatException nfe) {
-                JOptionPane.showConfirmDialog(
-                        ApplicationContext.getInstance().getMainFrame(),
-                        "The number "+result+" could not be parsed",
-                        "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
-
+                ConfirmDialogs.showError("The number "+result+" could not be parsed");
             }
         }
     }

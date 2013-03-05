@@ -20,6 +20,7 @@ public class ParameterFrame extends JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
+        setIconImage(IconHolder.getIcon());
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();

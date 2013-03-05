@@ -1,6 +1,7 @@
 package de.jfract.gui.actions;
 
 import de.jfract.ApplicationContext;
+import de.jfract.gui.ConfirmDialogs;
 import de.jfract.gui.ParameterFrame;
 import de.jfract.math.FractalPars;
 
@@ -24,6 +25,10 @@ public class ParameterAction extends AbstractAction {
         ParameterFrame pf = new ParameterFrame();
         pf.setTitle("Parameter");
         FractalPars fp = ApplicationContext.getInstance().getFractalParameters();
+        if (fp==null || fp.getFractal()==null) {
+            ConfirmDialogs.showError("You must select a fractal first!");
+            return;
+        }
         pf.setFixPoint(fp.getFixPoint());
         pf.setStartPoint(fp.getStartPoint());
         pf.setIterations(fp.getMaxit());
