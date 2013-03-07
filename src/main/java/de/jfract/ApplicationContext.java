@@ -25,6 +25,7 @@ public class ApplicationContext {
     private MainFrame mainFrame;
     private volatile FractalPars fractalParameters;
     private volatile Stack<Thread> threadStack = new Stack<Thread>();
+    private volatile boolean calculationFinished = true;
 
     private ApplicationContext() {
         fractalParameters = new FractalPars();
@@ -55,6 +56,16 @@ public class ApplicationContext {
     }
 
     public void recalculate() {
+        recalculate((Graphics2D)ApplicationContext.getInstance().getPanel().getGraphics(),
+                this.getPanel().getWidth(), this.getPanel().getHeight());
+    }
+
+    public boolean isCalculationFinished() {
+        return calculationFinished;
+    }
+
+
+    public void recalculate(final Graphics2D g2d, final int width, final int height) {
 
         if (fractalParameters==null || fractalParameters.getFractal()==null) return;
 
@@ -64,12 +75,12 @@ public class ApplicationContext {
         }
 
         final FractalPars fp = this.getFractalParameters();
-        final DrawPanel dp = this.getPanel();
 
-        fp.setMaxx(dp.getWidth());
-        fp.setMaxy(dp.getHeight());
+        fp.setMaxx(width);
+        fp.setMaxy(height);
         fp.getFractal().setFixPoint(fp.getFixPoint());
-        //fp.getFractal().setStartPoint(fp.getStartPoint());
+
+        calculationFinished = false;
 
         Thread t = new Thread(new Runnable() {
             @Override
@@ -90,13 +101,12 @@ public class ApplicationContext {
                 cals[i].start();
             }
 
-            Graphics2D g2d = (Graphics2D)ApplicationContext.getInstance().getPanel().getGraphics();
             g2d.setColor(Color.black);
-            g2d.fillRect(0,0,dp.getWidth(), dp.getHeight());
+            g2d.fillRect(0,0,width,height);
             Thread me = Thread.currentThread();
             for(int i=0;i<fp.getMaxx();++i) {
                 for(int j=0;j<fp.getMaxy();++j) {
-                    Color c = null;
+                    Color c;
 
                     do {
                         c=dq.get(i,j);
@@ -114,6 +124,7 @@ public class ApplicationContext {
                     if (me.isInterrupted()) break;
                 }
             }
+            calculationFinished=true;
             }
         });
         t.start();

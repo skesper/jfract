@@ -66,7 +66,6 @@ public class FractalPars implements Serializable {
 		return centerX;
 	}
 	public void setCenterX(double centerX) {
-        new Throwable().printStackTrace();
 		this.centerX = centerX;
 	}
 	public double getCenterY() {
@@ -93,10 +92,12 @@ public class FractalPars implements Serializable {
         pan(x,y,width,height);
 
         setD(d/4.);
+        System.out.println("DEBUG: zoom: "+getD());
     }
 
     public void zoomOut(int x, int y, int width, int height) {
         setD(d*4.);
+        System.out.println("DEBUG: zoom: "+getD());
     }
 
     public void pan(int x, int y, int width, int height) {
@@ -110,5 +111,7 @@ public class FractalPars implements Serializable {
 
         centerX = ux+d2*dx/dw;
         centerY = uy+d*dy/dh;
+
+        System.out.println("DEBUG: center: ("+centerX+","+centerY+")");
     }
 }
