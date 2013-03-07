@@ -28,6 +28,9 @@ public class MovieGenerator implements Runnable {
 
     @Override
     public void run() {
+        File dir = new File(props.getProperty(ConfigurationParameters.OUTPUT_DIR));
+        if (!dir.exists()) dir.mkdirs();
+
         try {
             FractalParameterUtil fpu = new FractalParameterUtil(props);
             int frames = fpu.getFrames();
@@ -47,12 +50,14 @@ public class MovieGenerator implements Runnable {
         } catch(Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error in batch job.",e);
         }
+        System.exit(0);
     }
 
     public void write(int idx, BufferedImage img) throws Exception {
 
+        String idxs = String.format("%04d", idx);
         File file = new File(props.getProperty(ConfigurationParameters.OUTPUT_DIR),
-                props.getProperty(ConfigurationParameters.MV_FRAMES_FILE_PREFIX).concat(Integer.toString(idx)).concat(".jpg"));
+                props.getProperty(ConfigurationParameters.MV_FRAMES_FILE_PREFIX).concat(idxs).concat(".jpg"));
 
         ImageIO.write(img, "JPG", file);
     }

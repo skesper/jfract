@@ -86,7 +86,6 @@ public class FractalParameterUtil {
     public double getInterpolatedValue(int step, int max, double start, double end) {
         double a = Math.exp((Math.log(end)-Math.log(start))/((double)max));
         double v = start*Math.pow(a, step);
-        System.out.println("DEBUG: v="+v+", step="+step);
         return v;
     }
 
