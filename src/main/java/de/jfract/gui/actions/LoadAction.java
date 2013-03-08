@@ -25,6 +25,7 @@ public class LoadAction extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser ch = new JFileChooser(System.getProperty("user.dir"));
+        ch.setFileFilter(new JfractFileFilter());
         if (ch.showOpenDialog(null) == JFileChooser.CANCEL_OPTION) return;
 
         FileInputStream fis = null;
