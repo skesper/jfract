@@ -17,18 +17,17 @@ import java.awt.event.ActionEvent;
  */
 public class FractalChooseAction extends AbstractAction {
 
-    private FractalType type = null;
+    private Fractal fractal = null;
 
-    public FractalChooseAction(FractalType fractalType) {
-        this.type = fractalType;
-        this.putValue(AbstractAction.NAME, fractalType.getLabel());
+    public FractalChooseAction(Fractal fractal) {
+        this.fractal = fractal;
+        this.putValue(AbstractAction.NAME, fractal.toString());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         try {
-            Fractal fractal = type.getImplementation().newInstance();
             FractalPars fp = new FractalPars();
             fp.setFractal(fractal);
             fp.setMaxit(fractal.getPreferredMaxIt());

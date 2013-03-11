@@ -38,4 +38,9 @@ public class Mandel extends Fractal {
     public double getPreferredD() {
         return 2.5;
     }
+
+    @Override
+    public String toString() {
+        return "Mandelbrot Set";
+    }
 }

@@ -42,4 +42,9 @@ public class Chaos1 extends Fractal {
     public double getPreferredD() {
         return 10.;
     }
+
+    @Override
+    public String toString() {
+        return "Chaotic Model 1";
+    }
 }

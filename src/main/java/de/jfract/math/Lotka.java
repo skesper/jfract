@@ -45,4 +45,9 @@ public class Lotka extends Fractal {
     public double getPreferredD() {
         return 25.;
     }
+
+    @Override
+    public String toString() {
+       return "Lotka Volterra";
+    }
 }
