@@ -8,8 +8,9 @@ public class Julia extends Fractal {
 
 
     @Override
-	protected Complex calc(Complex z, Complex c) {
-		return z.multiply(z).add(c);
+	protected Complex calc(Complex z, Complex c, Complex result) {
+		result.set(z.multiply(z).add(c));
+        return result;
 	}
 
     @Override

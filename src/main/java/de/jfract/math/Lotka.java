@@ -12,12 +12,12 @@ public class Lotka extends Fractal {
     }
 
 	@Override
-	protected Complex calc(Complex z, Complex cc) {
+	protected Complex calc(Complex z, Complex cc, Complex result) {
 		double N = z.real();
 		double P = z.imaginary();
 		
-		Complex e = new Complex(N+dt*N*(a-b*P), P+dt*P*(c*N-d));
-		return e;
+		result.set(N+dt*N*(a-b*P), P+dt*P*(c*N-d));
+		return result;
 	}
 
     @Override

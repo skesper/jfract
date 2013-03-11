@@ -8,10 +8,12 @@ public class Chaos1 extends Fractal {
 	}
 
 	@Override
-	protected Complex calc(Complex z, Complex c) {
+	protected Complex calc(Complex z, Complex c, Complex result) {
 		Complex zz = z.square().add(one);
-		
-		return zz.divide(c);
+
+        Complex zzc = zz.divide(c);
+        result.set(zzc.real(), zzc.imaginary());
+		return result;
 	}
 
     @Override

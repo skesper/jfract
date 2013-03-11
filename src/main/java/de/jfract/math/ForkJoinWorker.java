@@ -46,8 +46,9 @@ public class ForkJoinWorker extends RecursiveTask<Color> {
 		Complex d;
 		Complex e = pars.getFixPoint() == null ? c : pars.getFixPoint();
 		r.divergence = null;
+        Complex result = new Complex();
 		for(int i=0;i<maxit;++i) {
-			z0 = pars.getFractal().calc(z0, e);
+			z0 = pars.getFractal().calc(z0, e, result);
 			if (z0.abs()>2.) {
 				r.iteration = i;
 				r.divergence = Divergence.divergent;

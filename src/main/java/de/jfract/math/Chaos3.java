@@ -12,7 +12,7 @@ public class Chaos3 extends Fractal {
 
 
     @Override
-    protected Complex calc(Complex z, Complex c) {
+    protected Complex calc(Complex z, Complex c, Complex result) {
         double zreal, zimag, creal, cimag;
         double areal, aimag, breal, bimag;
         double n, c1real, c1imag;
@@ -35,7 +35,8 @@ public class Chaos3 extends Fractal {
 //        c1imag = (-areal * bimag + aimag * breal) / n;
         c1imag = (aimag * breal-areal * bimag) / n;
 
-        return new Complex(c1real * c1real - c1imag * c1imag,2. * c1real * c1imag);
+        result.set(c1real * c1real - c1imag * c1imag,2. * c1real * c1imag);
+        return result;
     }
 
     @Override

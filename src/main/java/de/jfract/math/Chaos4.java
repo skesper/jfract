@@ -11,7 +11,7 @@ public class Chaos4 extends Fractal {
     }
 
     @Override
-    protected Complex calc(Complex z, Complex c) {
+    protected Complex calc(Complex z, Complex c, Complex result) {
 
 //        Complex a = new Complex(
 //                z.real()*z.real()-z.imaginary()*z.imaginary()+c.real(),
@@ -29,8 +29,9 @@ public class Chaos4 extends Fractal {
         Complex b = z.add(c);
 
         Complex c2 = a.divide(b);
-
-        return c2.multiply(c2);
+        Complex c3 = c2.multiply(c2);
+        result.set(c3);
+        return result;
     }
 
 

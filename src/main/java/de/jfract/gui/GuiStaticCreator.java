@@ -19,6 +19,8 @@ public class GuiStaticCreator {
         file.add(new LoadAction());
         file.add(new SaveAction());
         file.add(new JSeparator());
+        file.add(new ExportAction());
+        file.add(new JSeparator());
         file.add(new ExitAction());
         bar.add(file);
 
