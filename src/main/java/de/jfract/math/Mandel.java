@@ -3,7 +3,9 @@ package de.jfract.math;
 
 public class Mandel extends Fractal {
 
-	public Mandel() {
+    private static final long serialVersionUID = 8303601425014270359L;
+
+    public Mandel() {
 	}
 
 	@Override

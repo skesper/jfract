@@ -11,6 +11,8 @@ import java.awt.*;
  */
 public class DefaultModel extends ColorModel {
 
+    private static final long serialVersionUID = 252445255193276041L;
+
     public DefaultModel() {
         super(30,80,50,300,500,800);
     }

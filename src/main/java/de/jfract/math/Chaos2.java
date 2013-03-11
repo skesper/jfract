@@ -1,7 +1,8 @@
 package de.jfract.math;
 
 public class Chaos2 extends Fractal {
-	private static Complex one = new Complex(-2., 0.);
+    private static final long serialVersionUID = 8166937600676697635L;
+    private static Complex one = new Complex(-2., 0.);
 
 	public Chaos2() {
 	}

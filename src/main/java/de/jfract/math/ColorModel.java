@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.io.Serializable;
 
 public abstract class ColorModel implements Serializable {
+
+    private static final long serialVersionUID = 41151373813827556L;
+
     protected double rconv;
     protected double gconv;
     protected double bconv;

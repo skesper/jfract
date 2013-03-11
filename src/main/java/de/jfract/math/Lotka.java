@@ -1,7 +1,8 @@
 package de.jfract.math;
 
 public class Lotka extends Fractal {
-	private double a,b,c,d, dt;
+    private static final long serialVersionUID = 3064642858133868768L;
+    private double a,b,c,d, dt;
 
     public Lotka() {
         this.a = 0.1;

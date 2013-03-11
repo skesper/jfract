@@ -7,6 +7,8 @@ package de.jfract.math;
  */
 public class Chaos3 extends Fractal {
 
+    private static final long serialVersionUID = 1317976087112039454L;
+
     public Chaos3() {
     }
 

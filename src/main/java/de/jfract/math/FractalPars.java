@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class FractalPars implements Serializable {
 
-    private static final long serialVersionUID = 123456789L;
+    private static final long serialVersionUID = 6286456322536551661L;
 
     private ColorModel colorModel = new DefaultModel();
 	private int maxx = 2000;

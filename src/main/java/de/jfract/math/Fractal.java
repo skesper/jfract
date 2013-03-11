@@ -3,7 +3,10 @@ package de.jfract.math;
 import java.io.Serializable;
 
 public abstract class Fractal implements Serializable {
-	private Complex startPoint = null;
+
+    private static final long serialVersionUID = -6840963616385390643L;
+
+    private Complex startPoint = null;
 	private Complex fixPoint = null;
 	
 

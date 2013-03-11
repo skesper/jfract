@@ -3,6 +3,8 @@ package de.jfract.math;
 
 public class Julia extends Fractal {
 
+    private static final long serialVersionUID = 4056896094058649853L;
+
     public Julia() {
     }
 
