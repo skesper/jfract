@@ -62,6 +62,11 @@ public class Chaos3 extends Fractal {
     }
 
     @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(-3.,0.);
+    }
+
+    @Override
     public double getPreferredD() {
         return 10.;
     }

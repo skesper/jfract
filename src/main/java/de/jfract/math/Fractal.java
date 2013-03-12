@@ -87,6 +87,8 @@ public abstract class Fractal implements Serializable {
 
     public abstract Complex getPreferredFixPoint();
 
+    public abstract Complex getPreferredCenterPoint();
+
     public abstract double getPreferredD();
 
     public enum UsageType {

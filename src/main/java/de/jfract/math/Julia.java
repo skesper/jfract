@@ -41,6 +41,11 @@ public class Julia extends Fractal {
     }
 
     @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(0.,0.);
+    }
+
+    @Override
     public String toString() {
         return "Julia";
     }

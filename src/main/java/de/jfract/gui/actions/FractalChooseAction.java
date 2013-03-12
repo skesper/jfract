@@ -34,6 +34,8 @@ public class FractalChooseAction extends AbstractAction {
             fp.setStartPoint(fractal.getPreferredStartPoint());
             fp.setFixPoint(fractal.getPreferredFixPoint());
             fp.setD(fractal.getPreferredD());
+            fp.setCenterX(fractal.getPreferredCenterPoint().real());
+            fp.setCenterY(fractal.getPreferredCenterPoint().imaginary());
 
             ApplicationContext.getInstance().setFractalParameters(fp);
         } catch (Exception e1) {

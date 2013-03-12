@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * User: kesper
@@ -22,6 +24,8 @@ public class ExportCalculationAction extends AbstractAction implements Applicati
     private ProgressMonitor pm;
     private BufferedImage bufferedImage;
     private String fileName;
+    private long startTime;
+    private long endTime;
 
     public ExportCalculationAction(ExportFrame exportFrame) {
         super("do it!");
@@ -39,6 +43,8 @@ public class ExportCalculationAction extends AbstractAction implements Applicati
 
         pm = new ProgressMonitor(null, "Calculating ...", "0% done", 0, 100);
 
+        startTime = System.currentTimeMillis();
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -51,11 +57,13 @@ public class ExportCalculationAction extends AbstractAction implements Applicati
     @Override
     public void calculationFinished() {
         pm.close();
+        endTime = System.currentTimeMillis();
+        System.out.println("DEBUG: time: "+(endTime-startTime)/1000+" s");
         try {
             ImageIO.write(bufferedImage, "PNG", new File(fileName));
             JOptionPane.showMessageDialog(null, "Image successfully exported.");
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error during export: " + e.getMessage());
         }
     }

@@ -47,6 +47,11 @@ public class Lotka extends Fractal {
     }
 
     @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(-1.,0.);
+    }
+
+    @Override
     public String toString() {
        return "Lotka Volterra";
     }

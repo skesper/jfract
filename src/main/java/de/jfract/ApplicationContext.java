@@ -111,7 +111,9 @@ public class ApplicationContext {
                         cancelCalculation();
                         return;
                     }
-                    calculationMonitor.setProgress(100*i/fp.getMaxx());
+                    if (i%10==0) {
+                        calculationMonitor.setProgress(100*i/fp.getMaxx());
+                    }
                 }
                 for(int j=0;j<fp.getMaxy();++j) {
                     Color c;

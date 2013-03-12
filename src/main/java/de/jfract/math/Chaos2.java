@@ -56,6 +56,11 @@ public class Chaos2 extends Fractal {
     }
 
     @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(-5.,0.);
+    }
+
+    @Override
     public double getPreferredD() {
         return 10.;
     }

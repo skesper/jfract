@@ -35,6 +35,11 @@ public class Mandel extends Fractal {
     }
 
     @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(-0.75,0.);
+    }
+
+    @Override
     public double getPreferredD() {
         return 2.5;
     }
