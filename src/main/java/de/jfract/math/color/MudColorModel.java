@@ -30,8 +30,8 @@ public class MudColorModel extends ColorModel {
         double shift2 = it / bdiv; //_xwidth ;// */
 
         float r = (float) (32 * Math.sin(shift0 + fac)) + 128;
-        float g = (float) (32 * Math.sin(shift1 + fac)) + 128;
-        float bl = (float) (32 * Math.sin(shift2 + fac)) + 128;
+        float g = (float) (64 * Math.sin(shift1 + fac)) + 128;
+        float bl = (float) (128 * Math.sin(shift2 + fac)) + 128;
 
         return new Color(r / 256.F, g / 256.F, bl / 256.F, 1.F);
     }
