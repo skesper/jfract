@@ -35,7 +35,7 @@ public class ParameterFrame extends JFrame {
         jButton1 = new javax.swing.JButton(new SaveAction());
         jButton2 = new javax.swing.JButton(new CancelAction());
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setText("Start Point:");

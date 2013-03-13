@@ -5,11 +5,11 @@ package de.jfract.math;
  * Date: 27.02.13
  * Time: 21:21
  */
-public class Chaos3 extends Fractal {
+public class ConvergenceDivergence extends Fractal {
 
     private static final long serialVersionUID = 1317976087112039454L;
 
-    public Chaos3() {
+    public ConvergenceDivergence() {
     }
 
 
@@ -73,6 +73,6 @@ public class Chaos3 extends Fractal {
 
     @Override
     public String toString() {
-        return "Chaotic Model 3";
+        return "Convergence Divergence";
     }
 }

@@ -5,11 +5,11 @@ package de.jfract.math;
  * Date: 3/4/13
  * Time: 4:32 PM
  */
-public class Chaos4 extends Fractal {
+public class CircularImpression extends Fractal {
 
     private static final long serialVersionUID = 3765221945314388687L;
 
-    public Chaos4() {
+    public CircularImpression() {
     }
 
     @Override
@@ -69,6 +69,6 @@ public class Chaos4 extends Fractal {
 
     @Override
     public String toString() {
-        return "Chaotic Model 4";
+        return "Circular impression";
     }
 }

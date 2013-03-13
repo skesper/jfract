@@ -15,10 +15,12 @@ public class FractalType {
 
         fractals.add(new Mandel());
         fractals.add(new Julia());
-        fractals.add(new Chaos1());
-        fractals.add(new Chaos2());
-        fractals.add(new Chaos3());
-        fractals.add(new Chaos4());
+        fractals.add(new TheEyeOfTheBeast());
+        fractals.add(new ConvergenceDivergence());
+        fractals.add(new ConvergenceDivergenceTwo());
+        fractals.add(new CircularImpression());
+        fractals.add(new DoubleHeadedDude());
+        fractals.add(new TripleHeadedDude());
         fractals.add(new Lotka());
 
         return fractals;
