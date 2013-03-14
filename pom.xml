@@ -7,7 +7,9 @@
     <groupId>jfract</groupId>
     <artifactId>jfract</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <properties>
+        <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
+    </properties>
     <build>
         <plugins>
             <plugin>
