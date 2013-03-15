@@ -19,7 +19,7 @@ public class Julia extends Fractal {
 
     @Override
     public int getPreferredMaxIt() {
-        return 200;
+        return 2000;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Julia extends Fractal {
 
     @Override
     public Complex getPreferredFixPoint() {
-        return new Complex(-1.2,0.3);
+        return new Complex(-1.2,0.155);
     }
 
     @Override
