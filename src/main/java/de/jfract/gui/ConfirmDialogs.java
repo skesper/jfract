@@ -2,9 +2,7 @@ package de.jfract.gui;
 
 import de.jfract.ApplicationContext;
 import de.jfract.math.ColorModel;
-import de.jfract.math.color.AlternatingModel;
-import de.jfract.math.color.DefaultModel;
-import de.jfract.math.color.SimpleGreyModel;
+import de.jfract.math.color.*;
 
 import javax.swing.*;
 
@@ -31,6 +29,8 @@ public class ConfirmDialogs {
 
     private static final ColorModel[] COLOR_MODELS = new ColorModel[]{
             new DefaultModel(),
+            new CandyColorModel(),
+            new MudColorModel(),
             new SimpleGreyModel(),
             new AlternatingModel()
     };

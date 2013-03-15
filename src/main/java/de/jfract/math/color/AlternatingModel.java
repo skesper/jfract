@@ -10,13 +10,10 @@ import java.awt.*;
  * Time: 15:38
  */
 public class AlternatingModel extends ColorModel {
+    private static final double logfac = Math.log(0.6);
 
     public AlternatingModel() {
         super(0,0,0,0,0,0);
-    }
-
-    public AlternatingModel(double rconv, double gconv, double bconv, double rdiv, double gdiv, double bdiv) {
-        super(rconv, gconv, bconv, rdiv, gdiv, bdiv);
     }
 
     @Override
@@ -28,7 +25,10 @@ public class AlternatingModel extends ColorModel {
 
     @Override
     protected Color getDivergentColor(int it) {
-        return it%2==0 ? Color.WHITE : Color.BLACK;
+
+        int logit = (int)(Math.log(it) / logfac);
+
+        return logit%2==0 ? Color.WHITE : Color.BLACK;
     }
 
     @Override

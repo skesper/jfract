@@ -1,41 +1,28 @@
 package de.jfract.math;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created with IntelliJ IDEA.
  * User: kesper
  * Date: 22.02.13
  * Time: 15:50
- * To change this template use File | Settings | File Templates.
  */
-public enum FractalType {
+public class FractalType {
 
-    MANDEL("Mandelbrot", Mandel.class),
-    JULIA("Julia", Julia.class),
-    CHAOS1("Chaotic Model 1", Chaos1.class),
-    CHAOS2("Chaotic Model 2", Chaos2.class),
-    CHAOS3("Chaotic Model 3", Chaos3.class),
-    CHAOS4("Chaotic Model 4", Chaos4.class),
-    LOTKA("Lotka Volterra", Lotka.class)
-    ;
+    public static List<Fractal> getFractals() {
+        ArrayList<Fractal> fractals = new ArrayList<Fractal>();
 
-    private String label;
-    private Class<? extends Fractal> impl;
+        fractals.add(new Mandel());
+        fractals.add(new Julia());
+        fractals.add(new TheEyeOfTheBeast());
+        fractals.add(new ConvergenceDivergence());
+        fractals.add(new ConvergenceDivergenceTwo());
+        fractals.add(new CircularImpression());
+        fractals.add(new DoubleHeadedDude());
+        fractals.add(new TripleHeadedDude());
+        fractals.add(new Lotka());
 
-    private FractalType(String label, Class<? extends Fractal> impl) {
-        this.label = label;
-        this.impl = impl;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public Class<? extends Fractal> getImplementation() {
-        return impl;
-    }
-
-    @Override
-    public String toString() {
-        return label;
+        return fractals;
     }
 }

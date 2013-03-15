@@ -3,7 +3,10 @@ package de.jfract.math;
 import java.io.Serializable;
 
 public abstract class Fractal implements Serializable {
-	private Complex startPoint = null;
+
+    private static final long serialVersionUID = -6840963616385390643L;
+
+    private Complex startPoint = null;
 	private Complex fixPoint = null;
 	
 
@@ -17,7 +20,6 @@ public abstract class Fractal implements Serializable {
 
 //        Complex z1=new Complex(c.real()-10000., c.imaginary());
         Complex z1=new Complex(0,0);
-		Complex d;
 		Complex e;
         if (getType()==UsageType.FIX_POINT || getType()==UsageType.BOTH) {
             e = fixPoint;
@@ -26,10 +28,12 @@ public abstract class Fractal implements Serializable {
         }
 
 		r.divergence = null;
+        Complex result = new Complex();
+        Complex diff = new Complex();
 		for(int i=0;i<maxit;++i) {
-			z0 = calc(z0, e);
-			d = z0.subtract(z1);
-			if (d.abs()<1.E-12) {
+			z0 = calc(z0, e, result);
+			z0.subtract(z1, diff);
+			if (diff.abs()<1.E-12) {
 				r.iteration = i;
                 r.divergence = Divergence.convergent;
 				break;
@@ -39,7 +43,7 @@ public abstract class Fractal implements Serializable {
                 r.divergence = Divergence.divergent;
                 break;
             }
-			z1 = z0;
+			z1.set(z0);
 		}
 
 		if (r.divergence==null) {
@@ -73,7 +77,7 @@ public abstract class Fractal implements Serializable {
 	 * @param c
 	 * @return
 	 */
-	protected abstract Complex calc(Complex z, Complex c);
+	protected abstract Complex calc(Complex z, Complex c, Complex result);
 
     public abstract UsageType getType();
 
@@ -82,6 +86,8 @@ public abstract class Fractal implements Serializable {
     public abstract Complex getPreferredStartPoint();
 
     public abstract Complex getPreferredFixPoint();
+
+    public abstract Complex getPreferredCenterPoint();
 
     public abstract double getPreferredD();
 

@@ -7,6 +7,7 @@ import de.jfract.math.DrawingQueue;
 import de.jfract.math.FractalPars;
 import de.jfract.math.Worker;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Stack;
 import java.util.concurrent.BrokenBarrierException;
@@ -55,24 +56,24 @@ public class ApplicationContext {
         this.fractalParameters = fractalParameters;
     }
 
+    public boolean isCalculationFinished() {
+        return calculationFinished;
+    }
+
     public void recalculate() {
         recalculate((Graphics2D)ApplicationContext.getInstance().getPanel().getGraphics(),
                 this.getPanel().getWidth(), this.getPanel().getHeight());
     }
 
-    public boolean isCalculationFinished() {
-        return calculationFinished;
+    public void recalculate(final Graphics2D g2d, final int width, final int height) {
+        recalculate(g2d, width, height, null);
     }
 
-
-    public void recalculate(final Graphics2D g2d, final int width, final int height) {
+    public void recalculate(final Graphics2D g2d, final int width, final int height, final CalculationMonitor calculationMonitor) {
 
         if (fractalParameters==null || fractalParameters.getFractal()==null) return;
 
-        while(!threadStack.isEmpty()) {
-            Thread t = threadStack.pop();
-            t.interrupt();
-        }
+        cancelCalculation();
 
         final FractalPars fp = this.getFractalParameters();
 
@@ -105,6 +106,15 @@ public class ApplicationContext {
             g2d.fillRect(0,0,width,height);
             Thread me = Thread.currentThread();
             for(int i=0;i<fp.getMaxx();++i) {
+                if (calculationMonitor!=null) {
+                    if (calculationMonitor.isCanceled()) {
+                        cancelCalculation();
+                        return;
+                    }
+                    if (i%10==0) {
+                        calculationMonitor.setProgress(100*i/fp.getMaxx());
+                    }
+                }
                 for(int j=0;j<fp.getMaxy();++j) {
                     Color c;
 
@@ -124,9 +134,29 @@ public class ApplicationContext {
                     if (me.isInterrupted()) break;
                 }
             }
+            if (calculationMonitor!=null) {
+                calculationMonitor.calculationFinished();
+            }
             calculationFinished=true;
             }
         });
         t.start();
+    }
+
+    public void cancelCalculation() {
+        while(!threadStack.isEmpty()) {
+            Thread t = threadStack.pop();
+            t.interrupt();
+        }
+    }
+
+    public static interface CalculationMonitor {
+        public void setProgress(int percent);
+
+        public void calculationFinished();
+
+        public void setCalculationCanceled();
+
+        public boolean isCanceled();
     }
 }

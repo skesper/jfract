@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 public class FractalPars implements Serializable {
 
+    private static final long serialVersionUID = 6286456322536551661L;
+
     private ColorModel colorModel = new DefaultModel();
 	private int maxx = 2000;
 	private int maxy = 2000;
@@ -113,5 +115,21 @@ public class FractalPars implements Serializable {
         centerY = uy+d*dy/dh;
 
         System.out.println("DEBUG: center: ("+centerX+","+centerY+")");
+    }
+
+    @Override
+    public FractalPars clone() throws CloneNotSupportedException {
+        FractalPars clone = new FractalPars();
+        clone.setMaxx(this.getMaxx());
+        clone.setMaxy(this.getMaxy());
+        clone.setMaxit(this.getMaxit());
+        clone.setCenterX(this.getCenterX());
+        clone.setStartPoint(this.getStartPoint());
+        clone.setCenterY(this.getCenterY());
+        clone.setColorModel(this.getColorModel());
+        clone.setD(this.getD());
+        clone.setFixPoint(this.getFixPoint());
+        clone.setFractal(this.getFractal());
+        return clone;
     }
 }

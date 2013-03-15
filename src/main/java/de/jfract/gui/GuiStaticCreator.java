@@ -1,6 +1,7 @@
 package de.jfract.gui;
 
 import de.jfract.gui.actions.*;
+import de.jfract.math.Fractal;
 import de.jfract.math.FractalType;
 
 import javax.swing.*;
@@ -19,6 +20,8 @@ public class GuiStaticCreator {
         file.add(new LoadAction());
         file.add(new SaveAction());
         file.add(new JSeparator());
+        file.add(new ExportAction());
+        file.add(new JSeparator());
         file.add(new ExitAction());
         bar.add(file);
 
@@ -30,8 +33,8 @@ public class GuiStaticCreator {
 
         JMenu frac = new JMenu("Fractals");
 
-        for(FractalType ft : FractalType.values()) {
-            frac.add(new FractalChooseAction(ft));
+        for(Fractal f : FractalType.getFractals()) {
+            frac.add(new FractalChooseAction(f));
         }
 
         frac.add(new JSeparator());

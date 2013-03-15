@@ -3,13 +3,16 @@ package de.jfract.math;
 
 public class Julia extends Fractal {
 
+    private static final long serialVersionUID = 4056896094058649853L;
+
     public Julia() {
     }
 
 
     @Override
-	protected Complex calc(Complex z, Complex c) {
-		return z.multiply(z).add(c);
+	protected Complex calc(Complex z, Complex c, Complex result) {
+		result.set(z.multiply(z).add(c));
+        return result;
 	}
 
     @Override
@@ -35,5 +38,15 @@ public class Julia extends Fractal {
     @Override
     public double getPreferredD() {
         return 2.5;
+    }
+
+    @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(0.,0.);
+    }
+
+    @Override
+    public String toString() {
+        return "Julia";
     }
 }

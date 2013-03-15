@@ -5,13 +5,15 @@ package de.jfract.math;
  * Date: 3/4/13
  * Time: 4:32 PM
  */
-public class Chaos4 extends Fractal {
+public class CircularImpression extends Fractal {
 
-    public Chaos4() {
+    private static final long serialVersionUID = 3765221945314388687L;
+
+    public CircularImpression() {
     }
 
     @Override
-    protected Complex calc(Complex z, Complex c) {
+    protected Complex calc(Complex z, Complex c, Complex result) {
 
 //        Complex a = new Complex(
 //                z.real()*z.real()-z.imaginary()*z.imaginary()+c.real(),
@@ -29,8 +31,9 @@ public class Chaos4 extends Fractal {
         Complex b = z.add(c);
 
         Complex c2 = a.divide(b);
-
-        return c2.multiply(c2);
+        Complex c3 = c2.multiply(c2);
+        result.set(c3);
+        return result;
     }
 
 
@@ -55,7 +58,17 @@ public class Chaos4 extends Fractal {
     }
 
     @Override
+    public Complex getPreferredCenterPoint() {
+        return new Complex(0.,0.);
+    }
+
+    @Override
     public double getPreferredD() {
         return 10.;
+    }
+
+    @Override
+    public String toString() {
+        return "Circular impression";
     }
 }
