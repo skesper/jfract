@@ -22,6 +22,7 @@ public class FractalType {
         fractals.add(new DoubleHeadedDude());
         fractals.add(new TripleHeadedDude());
         fractals.add(new Lotka());
+        fractals.add(new AnotherChaos());
 
         return fractals;
     }
