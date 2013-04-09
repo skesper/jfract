@@ -37,4 +37,9 @@ public class DrawPanel extends JPanel {
     public void repaint(long tm, int x, int y, int width, int height) {
         super.repaint(tm, x, y, width, height);    //To change body of overridden methods use File | Settings | File Templates.
     }
+
+    @Override
+    public Graphics getGraphics() {
+        return super.getGraphics();
+    }
 }

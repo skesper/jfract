@@ -23,6 +23,7 @@ public class FractalType {
         fractals.add(new TripleHeadedDude());
         fractals.add(new Lotka());
         fractals.add(new AnotherChaos());
+        fractals.add(new EllipticFunction());
 
         return fractals;
     }
