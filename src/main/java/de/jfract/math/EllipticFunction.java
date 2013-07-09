@@ -19,7 +19,9 @@ public class EllipticFunction extends Fractal {
 
         // (c*z^2+z)/(z^2+z)
         Complex z2 = z.multiply(z);
-        Complex q = z2.multiply(c).add(z).divide(c.add(z));
+//        Complex q = z2.multiply(c).add(z).divide(z2.add(z));
+//        Complex q = z2.multiply(c).add(z).divide(c.add(z));
+        Complex q = z2.multiply(c).add(z).divide(z.multiply(2.).add(c));
 
         result.set(q.real(), q.imaginary());
         return result;
