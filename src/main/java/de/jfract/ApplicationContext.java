@@ -2,10 +2,12 @@ package de.jfract;
 
 import de.jfract.gui.DrawPanel;
 import de.jfract.gui.MainFrame;
+import de.jfract.gui.fx.FXGraphics2D;
 import de.jfract.math.ColumnSynchronizer;
 import de.jfract.math.DrawingQueue;
 import de.jfract.math.FractalPars;
 import de.jfract.math.Worker;
+import javafx.scene.canvas.GraphicsContext;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,6 +71,10 @@ public class ApplicationContext {
         recalculate(g2d, width, height, null);
     }
 
+    public void recalculate(final GraphicsContext gcfx, int width, int height) {
+        recalculate(new FXGraphics2D(gcfx), width, height, null);
+    }
+
     public void recalculate(final Graphics2D g2d, final int width, final int height, final CalculationMonitor calculationMonitor) {
 
         if (fractalParameters==null || fractalParameters.getFractal()==null) return;
@@ -83,7 +89,8 @@ public class ApplicationContext {
 
         calculationFinished = false;
 
-        Thread t = new Thread(new Runnable() {
+
+        Runnable rr = new Runnable() {
             @Override
             public void run() {
             threadStack.push(Thread.currentThread());
@@ -98,6 +105,7 @@ public class ApplicationContext {
                 cals[i] = new Thread(new Worker(cs,
                         dq,
                         cb, fp));
+                cals[i].setDaemon(true);
                 threadStack.push(cals[i]);
                 cals[i].start();
             }
@@ -139,8 +147,11 @@ public class ApplicationContext {
             }
             calculationFinished=true;
             }
-        });
+        };
+        Thread t = new Thread(rr);
+        t.setDaemon(true);
         t.start();
+
     }
 
     public void cancelCalculation() {

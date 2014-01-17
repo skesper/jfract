@@ -58,7 +58,7 @@ public class ExportCalculationAction extends AbstractAction implements Applicati
     public void calculationFinished() {
         pm.close();
         endTime = System.currentTimeMillis();
-        System.out.println("DEBUG: time: "+(endTime-startTime)/1000+" s");
+        System.out.println("elapsed time: "+(endTime-startTime)/1000+" s");
         try {
             ImageIO.write(bufferedImage, "PNG", new File(fileName));
             JOptionPane.showMessageDialog(null, "Image successfully exported.");

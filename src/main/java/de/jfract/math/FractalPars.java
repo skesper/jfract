@@ -90,16 +90,14 @@ public class FractalPars implements Serializable {
 	}
 
     public void zoomIn(int x, int y, int width, int height) {
-
-        pan(x,y,width,height);
-
-        setD(d/4.);
-        System.out.println("DEBUG: zoom: "+getD());
+        pan(x, y, width, height);
+        setD(d / 4.);
+        System.out.println("zoom in: "+d);
     }
 
     public void zoomOut(int x, int y, int width, int height) {
-        setD(d*4.);
-        System.out.println("DEBUG: zoom: "+getD());
+        setD(d * 4.);
+        System.out.println("zoom out: "+d);
     }
 
     public void pan(int x, int y, int width, int height) {
@@ -113,8 +111,7 @@ public class FractalPars implements Serializable {
 
         centerX = ux+d2*dx/dw;
         centerY = uy+d*dy/dh;
-
-        System.out.println("DEBUG: center: ("+centerX+","+centerY+")");
+        System.out.println("pan to: ("+centerX+", "+centerY+")");
     }
 
     @Override

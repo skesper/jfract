@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-background-color 0x808080ff?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.jfract.gui.fx.FXController">
+  <children>
+    <MenuBar fx:id="menuBar" maxWidth="1.7976931348623157E308" prefWidth="950.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#loadAction" text="Load" />
+            <MenuItem mnemonicParsing="false" onAction="#saveAction" text="Save" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#exportAction" text="Export" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Settings">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Iteration depth ..." onAction="#changeIterationAction" />
+            <MenuItem mnemonicParsing="false" text="Parameters ..." onAction="#changeParametersAction" />
+            <MenuItem mnemonicParsing="false" text="Select color model ..." onAction="#changeColorModelAction" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Fractals">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#mandelAction" text="Mandelbrot" />
+            <MenuItem mnemonicParsing="false" text="Julia"  onAction="#juliaAction"/>
+            <MenuItem mnemonicParsing="false" text="The eye of the beast" onAction="#eyeOfTheBeastAction" />
+            <MenuItem mnemonicParsing="false" onAction="#convergenceDivergenceAction" text="Convergence divergence" />
+            <MenuItem mnemonicParsing="false" text="Convergence divergence 2" onAction="#convergenceDivergenceTwoAction" />
+            <MenuItem mnemonicParsing="false" text="Circular impression" onAction="#circularImpressionAction" />
+            <MenuItem mnemonicParsing="false" text="Double headed dude" onAction="#doubleHeadedDudeAction" />
+            <MenuItem mnemonicParsing="false" text="Triple headed dude" onAction="#tripleHeadedDudeAction" />
+            <MenuItem mnemonicParsing="false" text="Lotka Volterra" onAction="#lotkaAction" />
+            <MenuItem mnemonicParsing="false" text="Another Chaos" onAction="#anotherChaosAction" />
+            <MenuItem mnemonicParsing="false" text="Elliptic Function"  onAction="#ellipticFunctionAction"/>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Calculate" onAction="#redraw" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <ScrollPane fx:id="scrollpane" prefHeight="665.0" prefWidth="950.0" style="-fx-background-color:#808080;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0" />
+    <ProgressBar fx:id="progressBar" progress="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+  </children>
+</AnchorPane>
