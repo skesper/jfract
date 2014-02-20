@@ -17,11 +17,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import org.controlsfx.control.action.Action;
+import javafx.stage.FileChooser;
 import org.controlsfx.dialog.Dialogs;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -42,6 +43,7 @@ public class FXController implements Initializable, EventHandler<javafx.scene.in
     @FXML
     private ProgressBar progressBar;
 
+    private File lastSelectedDirectory;
 
     private ArrayList<ColorModel> models = new ArrayList<ColorModel>();
 
@@ -55,14 +57,47 @@ public class FXController implements Initializable, EventHandler<javafx.scene.in
         models.add(new AlternatingModel());
 
         scrollpane.setOnMouseClicked(this);
+
+        if (lastSelectedDirectory==null) {
+            lastSelectedDirectory = new File(".");
+        }
     }
 
-    public void loadAction() {
-        System.err.println("ERROR: loadAction() not implemented yet.");
+    public void loadAction() throws IOException, ClassNotFoundException {
+        FileChooser chooser = new FileChooser();
+        if (lastSelectedDirectory!=null) {
+            chooser.setInitialDirectory(lastSelectedDirectory);
+        }
+        chooser.setTitle("Open ...");
+        File file = chooser.showOpenDialog(null);
+
+        if (file!=null) {
+            System.out.println("DEBUG: choosen file: "+file.getAbsoluteFile());
+            lastSelectedDirectory = file.getParentFile();
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            FractalPars pars = (FractalPars)ois.readObject();
+            ApplicationContext.getInstance().setFractalParameters(pars);
+            redraw();
+        }
     }
 
-    public void saveAction() {
-        System.err.println("ERROR: saveAction() not implemented yet.");
+    public void saveAction() throws IOException {
+        FileChooser chooser = new FileChooser();
+        if (lastSelectedDirectory!=null) {
+            chooser.setInitialDirectory(lastSelectedDirectory);
+        }
+        chooser.setTitle("Save ...");
+        File file = chooser.showSaveDialog(null);
+        if (file!=null) {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(ApplicationContext.getInstance().getFractalParameters());
+            oos.flush();
+            oos.close();
+            fos.flush();
+            fos.close();
+        }
     }
 
     public void exportAction() {
@@ -93,7 +128,7 @@ public class FXController implements Initializable, EventHandler<javafx.scene.in
 
         ColorModel selected = Dialogs.create().title("Color Model")
                 .masthead("Please choose your preferred color model")
-                .showChoices(ac.getFractalParameters().getColorModel(),models);
+                .showChoices(ac.getFractalParameters().getColorModel(), models);
 
         if (selected!=null) {
             ac.getFractalParameters().setColorModel(selected);
@@ -111,6 +146,10 @@ public class FXController implements Initializable, EventHandler<javafx.scene.in
 
     public void mandelAction() {
         setFractal(new Mandel());
+    }
+
+    public void mandelAction3() {
+        setFractal(new Mandel4());
     }
 
     public void juliaAction() {

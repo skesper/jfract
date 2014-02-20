@@ -29,7 +29,8 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Fractals">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#mandelAction" text="Mandelbrot" />
+              <MenuItem mnemonicParsing="false" onAction="#mandelAction" text="Mandelbrot" />
+              <MenuItem mnemonicParsing="false" onAction="#mandelAction3" text="Mandelbrot^16" />
             <MenuItem mnemonicParsing="false" text="Julia"  onAction="#juliaAction"/>
             <MenuItem mnemonicParsing="false" text="The eye of the beast" onAction="#eyeOfTheBeastAction" />
             <MenuItem mnemonicParsing="false" onAction="#convergenceDivergenceAction" text="Convergence divergence" />
