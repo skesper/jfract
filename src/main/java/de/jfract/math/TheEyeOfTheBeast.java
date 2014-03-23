@@ -12,9 +12,7 @@ public class TheEyeOfTheBeast extends Fractal {
 	@Override
 	protected Complex calc(Complex z, Complex c, Complex result) {
 		Complex zz = z.square().add(one);
-
-        Complex zzc = zz.divide(c);
-        result.set(zzc.real(), zzc.imaginary());
+        zz.divide(c, result);
 		return result;
 	}
 
