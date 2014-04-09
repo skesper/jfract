@@ -219,9 +219,8 @@ public class FXController implements Initializable, EventHandler<javafx.scene.in
 
 
         final BufferedImage bi = new BufferedImage((int)bounds.getWidth(), (int)bounds.getHeight(),BufferedImage.TYPE_INT_RGB);
-        final Graphics2D g2d = (Graphics2D)bi.getGraphics();
-
-        ApplicationContext.getInstance().recalculate(g2d, (int) bounds.getWidth(), (int) bounds.getHeight(), new ApplicationContext.CalculationMonitor() {
+        progressBar.setProgress(0.);
+        ApplicationContext.getInstance().recalculate(bi, (int) bounds.getWidth(), (int) bounds.getHeight(), new ApplicationContext.CalculationMonitor() {
             @Override
             public void setProgress(int percent) {
                 progressBar.setProgress(((double)percent)/100.);

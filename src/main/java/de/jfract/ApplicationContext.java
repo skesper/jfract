@@ -7,13 +7,17 @@ import de.jfract.math.ColumnSynchronizer;
 import de.jfract.math.DrawingQueue;
 import de.jfract.math.FractalPars;
 import de.jfract.math.Worker;
-import javafx.scene.canvas.GraphicsContext;
+import de.jfract.math.worker.FractalForkJoinPool;
+import de.jfract.math.worker.FractalForkJoinTask;
+import javafx.scene.canvas.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Stack;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.ForkJoinTask;
 
 /**
  * User: kesper
@@ -29,6 +33,8 @@ public class ApplicationContext {
     private volatile FractalPars fractalParameters;
     private volatile Stack<Thread> threadStack = new Stack<Thread>();
     private volatile boolean calculationFinished = true;
+
+    private volatile FractalForkJoinPool fractalForkJoinPool;
 
     private ApplicationContext() {
         fractalParameters = new FractalPars();
@@ -76,6 +82,11 @@ public class ApplicationContext {
     }
 
     public void recalculate(final Graphics2D g2d, final int width, final int height, final CalculationMonitor calculationMonitor) {
+        // Implement for online drawing during calculation
+        throw new RuntimeException("Not implemented.");
+    }
+
+    public void recalculate(final BufferedImage bi, final int width, final int height, final CalculationMonitor calculationMonitor) {
 
         if (fractalParameters==null || fractalParameters.getFractal()==null) return;
 
@@ -89,68 +100,42 @@ public class ApplicationContext {
 
         calculationFinished = false;
 
+        int numProc = Runtime.getRuntime().availableProcessors();
 
-        Runnable rr = new Runnable() {
+        if (fractalForkJoinPool!=null) {
+            fractalForkJoinPool.shutdownNow();
+        }
+        fractalForkJoinPool = new FractalForkJoinPool();
+        for(int i=0;i<numProc;++i) {
+            FractalForkJoinTask ffjt = new FractalForkJoinTask(i, numProc, fp, (Graphics2D)bi.getGraphics(), i==0 ? calculationMonitor : null);
+            fractalForkJoinPool.execute(ffjt);
+        }
+
+        fractalForkJoinPool.execute(new ForkJoinTask<Object>() {
             @Override
-            public void run() {
-            threadStack.push(Thread.currentThread());
-
-            int processors = Runtime.getRuntime().availableProcessors();
-            Thread[] cals = new Thread[processors];
-            CyclicBarrier cb = null; //new CyclicBarrier(processors+1);
-            ColumnSynchronizer cs = new ColumnSynchronizer(fp.getMaxx());
-
-            DrawingQueue dq = new DrawingQueue(fp.getMaxx(), fp.getMaxy());
-            for(int i=0;i<processors;++i) {
-                cals[i] = new Thread(new Worker(cs,
-                        dq,
-                        cb, fp));
-                cals[i].setDaemon(true);
-                threadStack.push(cals[i]);
-                cals[i].start();
+            public Object getRawResult() {
+                return null;
             }
 
-            g2d.setColor(Color.black);
-            g2d.fillRect(0,0,width,height);
-            Thread me = Thread.currentThread();
-            for(int i=0;i<fp.getMaxx();++i) {
-                if (calculationMonitor!=null) {
-                    if (calculationMonitor.isCanceled()) {
-                        cancelCalculation();
-                        return;
-                    }
-                    if (i%10==0) {
-                        calculationMonitor.setProgress(100*i/fp.getMaxx());
-                    }
-                }
-                for(int j=0;j<fp.getMaxy();++j) {
-                    Color c;
+            @Override
+            protected void setRawResult(Object value) {
 
-                    do {
-                        c=dq.get(i,j);
-                        if (c==null) {
-                            try {
-                                Thread.sleep(1);
-                            } catch (InterruptedException e) {
-                                return;
-                            }
-                        }
-                    } while(c==null);
-
-                    g2d.setColor(c);
-                    g2d.drawLine(i,j,i,j);
-                    if (me.isInterrupted()) break;
-                }
             }
-            if (calculationMonitor!=null) {
+
+            @Override
+            protected boolean exec() {
+                while(fractalForkJoinPool.getActiveThreadCount()>1) {
+                    try {
+                        Thread.sleep(10);
+                    } catch(InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("DEBUG: calculation finished.");
                 calculationMonitor.calculationFinished();
+                return false;
             }
-            calculationFinished=true;
-            }
-        };
-        Thread t = new Thread(rr);
-        t.setDaemon(true);
-        t.start();
+        });
 
     }
 
