@@ -7,6 +7,7 @@ import de.jfract.math.ColumnSynchronizer;
 import de.jfract.math.DrawingQueue;
 import de.jfract.math.FractalPars;
 import de.jfract.math.Worker;
+import de.jfract.math.worker.FractalFinalizationTask;
 import de.jfract.math.worker.FractalForkJoinPool;
 import de.jfract.math.worker.FractalForkJoinTask;
 import javafx.scene.canvas.*;
@@ -111,32 +112,7 @@ public class ApplicationContext {
             fractalForkJoinPool.execute(ffjt);
         }
 
-        fractalForkJoinPool.execute(new ForkJoinTask<Object>() {
-            @Override
-            public Object getRawResult() {
-                return null;
-            }
-
-            @Override
-            protected void setRawResult(Object value) {
-
-            }
-
-            @Override
-            protected boolean exec() {
-                while(fractalForkJoinPool.getActiveThreadCount()>1) {
-                    try {
-                        Thread.sleep(10);
-                    } catch(InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                System.out.println("DEBUG: calculation finished.");
-                calculationMonitor.calculationFinished();
-                return false;
-            }
-        });
-
+        fractalForkJoinPool.execute(new FractalFinalizationTask(calculationMonitor, fractalForkJoinPool));
     }
 
     public void cancelCalculation() {
