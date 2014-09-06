@@ -15,6 +15,7 @@ import javafx.scene.canvas.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.util.Stack;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -84,7 +85,33 @@ public class ApplicationContext {
 
     public void recalculate(final Graphics2D g2d, final int width, final int height, final CalculationMonitor calculationMonitor) {
         // Implement for online drawing during calculation
-        throw new RuntimeException("Not implemented.");
+        final BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        recalculate(bi, width, height, new CalculationMonitor() {
+            @Override
+            public void setProgress(int percent) {
+
+            }
+
+            @Override
+            public void calculationFinished() {
+                g2d.drawImage(bi, 0,0,new ImageObserver() {
+                    @Override
+                    public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                        return true;
+                    }
+                });
+            }
+
+            @Override
+            public void setCalculationCanceled() {
+
+            }
+
+            @Override
+            public boolean isCanceled() {
+                return false;
+            }
+        });
     }
 
     public void recalculate(final BufferedImage bi, final int width, final int height, final CalculationMonitor calculationMonitor) {
